@@ -11,17 +11,13 @@ def getTerminalArgs() -> str:
     args = parser.parse_args()
     return args.dir
 
-# Go through the files
-#   If .bmp -> convert to .jpeg
-#   If file -> Loop to iterate through the file to check for .bmp files
-
 def convert_file(full_path, new_file_path):
     try:
         with Image.open(full_path) as im:
             new_file_with_ext = new_file_path + newFileType
             im.save(new_file_with_ext)
             print(f'Converted {full_path} to {new_file_with_ext}')
-            # After conversion, delete the original .bmp file
+            # After conversion, delete the original file
             remove(full_path)
             print(f'Deleted original file: {full_path}')
     except (IOError, OSError) as e:
